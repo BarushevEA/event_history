@@ -50,8 +50,8 @@ export class HistoryArray<T> implements IHistoryArr<T>, IDestroy {
         if (this._isDestroyed) return undefined;
 
         const node: HistoryNode<T> = {
-            child: undefined,
-            parent: undefined,
+            child: this._root,
+            parent: <any>0,
             value: state
         };
 
@@ -63,7 +63,6 @@ export class HistoryArray<T> implements IHistoryArr<T>, IDestroy {
             return this._lastNode.value;
         }
 
-        node.child = this._root;
         this._root.parent = node;
         this._root = node;
 
@@ -72,8 +71,8 @@ export class HistoryArray<T> implements IHistoryArr<T>, IDestroy {
             const lastNode: HistoryNode<T> = this._lastNode;
 
             this._lastNode = lastNode.parent;
-            lastNode.parent = undefined;
-            this._lastNode && (this._lastNode.child = undefined);
+            lastNode.parent = <any>0;
+            this._lastNode && (this._lastNode.child = <any>0);
         }
 
         return (<any>this._lastNode).value;
