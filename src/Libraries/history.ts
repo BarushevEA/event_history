@@ -12,7 +12,8 @@ export class History<T> implements IEventHistory<T>, IDestroy {
 
     constructor(startState: T, size?: number) {
         this._isDestroyed = false;
-        this._event$ = new Observable<T>(undefined);
+        this._event$ = new Observable<T>(startState);
+        this._state = startState;
         this._defaultSize = 50;
         const historySize = size && size > 0 ? size : this._defaultSize;
         this._history = new HistoryArray<T>(historySize);
