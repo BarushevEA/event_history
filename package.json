@@ -1,0 +1,46 @@
+{
+  "name": "evg_event_history",
+  "version": "1.0.0",
+  "description": "The purpose of the project is to control the events of the object under study.",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "nyc ./node_modules/.bin/_mocha 'test/**/*.test.ts'",
+    "remove": "rm -rf ./src/Libraries; rm -rf ./test; rm .mocharc.json; rm .nyrc.json; rm register.js; rm tsconfig.json",
+    "build": "tsc --declaration; npm run remove"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BarushevEA/light-observable-ts.git"
+  },
+  "author": "Barushev E.A.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BarushevEA/light-observable-ts/issues"
+  },
+  "homepage": "https://github.com/BarushevEA/light-observable-ts#readme",
+  "dependencies": {
+    "evg_observable": "^1.3.35"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "@testdeck/mocha": "^0.3.3",
+    "@types/chai": "^4.3.4",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.1"
+  },
+  "keywords": [
+    "event_history",
+    "event history",
+    "state",
+    "Type script",
+    "TypeScript",
+    "TS",
+    "Java script",
+    "JavaScript",
+    "JS"
+  ]
+}
