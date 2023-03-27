@@ -1,6 +1,6 @@
 {
   "name": "evg_event_history",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The purpose of the project is to control the events of the object under study.",
   "directories": {
     "test": "test"
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BarushevEA/light-observable-ts.git"
+    "url": "git+https://github.com/BarushevEA/event_history.git"
   },
   "author": "Barushev E.A.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BarushevEA/light-observable-ts/issues"
+    "url": "https://github.com/BarushevEA/event_history"
   },
-  "homepage": "https://github.com/BarushevEA/light-observable-ts#readme",
+  "homepage": "https://github.com/BarushevEA/event_history#readme",
   "dependencies": {
     "evg_observable": "^1.3.35"
   },
