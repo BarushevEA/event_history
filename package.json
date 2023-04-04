@@ -1,6 +1,6 @@
 {
   "name": "evg_event_history",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "The purpose of the project is to control the events of the object under study.",
   "directories": {
     "test": "test"

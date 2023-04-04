@@ -149,52 +149,82 @@ export class Bank {
 ```
 
 ## Collect and launch
+
 _file: index.ts_
+
 ```ts
 import {CashMachine} from "./cashMachine";
 import {Bank} from "./bank";
 
-const userCard = {creditLimit: 100}; // The user has a card with a limit of 100 coins
-const bank = new Bank(); // The bank services cards
-const cashMachine = new CashMachine(); // User wants to withdraw cash from this ATM
+// The user has a card with a limit of 100 coins
+const userCard = {creditLimit: 100};
+// The bank services cards
+const bank = new Bank();
+// User wants to withdraw cash from this ATM
+const cashMachine = new CashMachine();
 
-bank.connectTo(cashMachine); // ATM connected to the bank
+// ATM connected to the bank
+bank.connectTo(cashMachine);
 
-console.log(
-    "The user is trying to get money (there are 100 coins in the card):",
-    cashMachine.getMoney(userCard)); // The user received his money
+// The user received his money
+// "The user is trying to get money 
+// (there are 100 coins in the card)"
+console.log(cashMachine.getMoney(userCard));
 
-console.log(
-    "The user is trying to get money (but he got everything last time):",
-    cashMachine.getMoney(userCard)); // Alas, the money is no longer on the card
+// Alas, the money is no longer on the card
+// "The user is trying to get money 
+// (but he got everything last time)"
+console.log(cashMachine.getMoney(userCard));
 
-bank.communicationBreak(); // Something happened and the ATM lost connection
+// Something happened and the ATM lost connection
+bank.communicationBreak();
 
-console.log(
-    "The user is trying to get money again (but the connection failed):",
-    cashMachine.getMoney(userCard)); // Sorry something is wrong
+// Sorry something is wrong
+// "The user is trying to get money again 
+// (but the connection failed)"
+console.log(cashMachine.getMoney(userCard));
 
-console.log(
-    "Cash machine events history:",
-    cashMachine.getHistory()); // The support team checked the history of ATM events
+// The support team checked the history of ATM events
+// "Cash machine events history"
+console.log(cashMachine.getHistory());
 
 /**
-Print to console:
+ Print to console:
 
-The user is trying to get money (there are 100 coins in the card): { coins: 100, description: 'Here is your money' }
-The user is trying to get money (but he got everything last time): { coins: 0, description: 'Credit limit exceeded' }
-The user is trying to get money (but the connection failed): { coins: 0, description: 'Unknown error' }
-Cash machine events history: [
-  'INIT',
-  'READY',
-  'REQUEST_FOR_MONEY',
-  'ALLOWED',
-  'GET_MONEY',
-  'REQUEST_FOR_MONEY',
-  'DISALLOWED',
-  'LIMIT_ERROR',
-  'REQUEST_FOR_MONEY',
-  'UNKNOWN_ERROR'
-]
+ { coins: 100, description: 'Here is your money' }
+ { coins: 0, description: 'Credit limit exceeded' }
+ { coins: 0, description: 'Unknown error' }
+ Cash machine events history: [
+ 'INIT',
+ 'READY',
+ 'REQUEST_FOR_MONEY',
+ 'ALLOWED',
+ 'GET_MONEY',
+ 'REQUEST_FOR_MONEY',
+ 'DISALLOWED',
+ 'LIMIT_ERROR',
+ 'REQUEST_FOR_MONEY',
+ 'UNKNOWN_ERROR'
+ ]
  */
 ```
+
+## Methods
+
+### class History<T>
+
+| methods and fields                          | will return | description                                                         |
+|:--------------------------------------------|:------------|:--------------------------------------------------------------------|
+| fields                                      |             |                                                                     |
+| `state`                                     | T           | set or get state                                                    |
+| `maxHistorySize`                            | number      |                                                                     |
+| `historySize`                               | number      |                                                                     |
+| `isDestroyed`                               | boolean     |                                                                     |
+|                                             |             |                                                                     |
+| methods                                     |             |                                                                     |
+| `constructor(startState: T, size?: number)` |             | `startState` - initial state, `size` - history size (50 by default) |
+| `eventSubscribe$(subscriber: IListener<T>)` | subscriber  | subscribe listener to history                                       |
+| `stateForHistory(state: T)`                 | void        | set `T` to event history without `state` change                     |
+| `isHistoryIncludes(state: T)`               | boolean     | check `T` from event history                                        |
+| `getHistory()`                              | T[]         | get saved history                                                   |
+| `destroy()`                                 | void        | destroy history                                                     |
